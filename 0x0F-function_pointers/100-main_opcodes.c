@@ -1,28 +1,36 @@
-#include "3-calc.h"
+#include <stdio.h>
+#include <stdlib.h>
 /**
-* main - Entry file
-* @argc: arguments count
-* @argv: arguments array
+* main - program that prints the opcodes of its own main function.
+* @argc: the number of arguments
+* @argv: the pointer array og arguments
 *
-* Return: 0 (Success)
+* File: 100-main_opcodes.c
+* Autjh: fatima-alsamawal
+*
+* Return: Always 0 (Successs)
 */
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
-int a;
-int (*fun_ptr)(int, int);
-if (argc != 4)
-{
-printf("Error\n");
-exit(98);
-}
-fun_ptr = get_op_func(argv[2]);
-if (!fun_ptr)
+int i, n;
+if (argc != 2)
 {
 printf("Error\n");
-exit(99);
+exit(1);
 }
-a = atoi(argv[1]);
-b = atoi(argv[3]);
-printf("%d\n", fun_ptr(a, b));
+n = atoi(argv[1]);
+if (n < 0)
+{
+printf("Error\n");
+exit(2);
+}
+for (i = 0; i < n; i++)
+{
+printf("%02hhx", *((char *)main + i));
+if (i <  n - 1)
+printf(" ");
+else
+printf("\n");
+}
 return (0);
 }
